@@ -42,6 +42,14 @@
 
             </div>
         </div>
+
+        <footer class="footer">
+            <hr>
+            <div class="notice">
+                <p>JavaScript Groop</p>
+                <p>2021 All rights reserved &copy;</p>
+            </div>
+        </footer>
     </div>
 </template>
 
@@ -57,30 +65,6 @@ export default {
         this.makeGETRequest(`${API_URL}/catalogData.json`);
     },
     methods: {
-        // makeGETRequest1(url, callback) {
-        //     let xhr;
-
-        //     let p = new Promise((resolve, reject) => {
-        //         if (window.XMLHttpRequest) {
-        //             xhr = new XMLHttpRequest();
-        //         } else if (window.ActiveXObject) {
-        //             // xhr = new ActiveXObject("Microsoft.XMLHTTP");
-        //         }
-
-        //         xhr.open('GET', url, true);
-        //         xhr.send();
-        //         resolve();
-        //     });
-
-        //     p.then(() => {
-        //         xhr.onreadystatechange = function () {
-        //             if (xhr.readyState === 4) {
-        //                 callback(xhr.responseText);
-        //             }
-        //         }
-        //     });
-        // },
-
         makeGETRequest (url) {
             fetch(url)
                 .then((data) => data.json())
@@ -92,13 +76,6 @@ export default {
     },
 }
 </script>
-
-
-
-
-
-
-
 
 
 <style>
