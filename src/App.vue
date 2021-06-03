@@ -14,7 +14,7 @@ import Content from "./components/Content";
 export default {
   name: "App",
   data: () => ({
-    toggelCart: true,
+    toggelCart: false,
   }),
 
   components: {

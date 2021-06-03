@@ -1,6 +1,7 @@
 <template>
   <div class="content">
     <div class="container">
+      <Search />
       <Picklist />
       <Cart v-show="isVisibleCart" />
     </div>
@@ -10,12 +11,14 @@
 <script>
 import Cart from "./Cart";
 import Picklist from "./Picklist";
+import Search from "./Search";
 
 export default {
   name: "Content",
   components: {
     Cart,
     Picklist,
+    Search,
   },
   props: {
     isVisibleCart: {

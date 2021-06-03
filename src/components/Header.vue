@@ -4,17 +4,7 @@
       <h1>Internet Shop</h1>
     </div>
     <div class="menu-top">
-      <form action="#" class="search">
-        <input
-          class="search-input"
-          type="search"
-          name="q"
-          placeholder="Поиск"
-        />
-        <button class="search-button" type="button">Найти</button>
-        <!-- <input class="search-button" type="submit" value="Найти"></p> -->
-      </form>
-
+      <a href=""></a>
       <button class="cart-button" type="button" @click="toggleCartStatus">
         Корзина {{ isVisibleCart }}
       </button>
