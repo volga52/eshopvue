@@ -1,0 +1,45 @@
+<template>
+  <div class="content">
+    <div class="container">
+      <Picklist />
+      <Cart />
+    </div>
+  </div>
+</template>
+
+<script>
+import Cart from "./Cart";
+import Picklist from "./Picklist";
+
+export default {
+  name: "Content",
+  components: {
+    Cart,
+    Picklist,
+  },
+};
+</script>
+
+<style>
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 16px;
+}
+
+.good {
+  border: 1px solid #000;
+  margin-bottom: 5px;
+  background: whitesmoke;
+}
+
+.item-pick-list {
+  margin: 0 2px 5px;
+  flex: auto;
+  max-width: 200px;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+}
+</style>
