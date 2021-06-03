@@ -2,7 +2,7 @@
   <div class="content">
     <div class="container">
       <Picklist />
-      <Cart />
+      <Cart v-show="isVisibleCart" />
     </div>
   </div>
 </template>
@@ -16,6 +16,12 @@ export default {
   components: {
     Cart,
     Picklist,
+  },
+  props: {
+    isVisibleCart: {
+      typeof: Boolean,
+      default: false,
+    },
   },
 };
 </script>
