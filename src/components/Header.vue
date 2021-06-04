@@ -52,9 +52,9 @@ export default {
   justify-content: space-between;
   padding: 10px 50px;
 }
-
+/* 
 .search-button {
   font-size: 16px;
   margin: 5px;
-}
+} */
 </style>
