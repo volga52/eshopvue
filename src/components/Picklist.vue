@@ -11,10 +11,7 @@
         <div>
           <div><b>Наименование</b>: {{ item.product_name }}</div>
           <div><b>Цена за штуку</b>: {{ item.price }}</div>
-          <button
-            class="addToBasket-btn"
-            data-id_product="${this.good.id_product}"
-          >
+          <button class="addToBasket-btn" data-id_product="${item.id_product}">
             Добавить в корзину
           </button>
         </div>
@@ -24,27 +21,16 @@
 </template>
 
 <script>
-const API_URL =
-  "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses";
 export default {
   name: "Picklist",
-  setup() {},
-  data: () => ({
-    good: [],
-    goodList: [],
-  }),
-  mounted() {
-    this.makeGETRequest(`${API_URL}/catalogData.json`);
-  },
-  methods: {
-    makeGETRequest(url) {
-      fetch(url)
-        .then((data) => data.json())
-        .then((data) => {
-          this.good = data;
-          this.goodList = data;
-        });
+  props: {
+    goodList: {
+      typeof: Array,
+      // default: () => [],
+      default: () => [],
     },
   },
 };
 </script>
+
+<style></style>

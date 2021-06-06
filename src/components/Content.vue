@@ -1,8 +1,8 @@
 <template>
   <div class="content">
     <div class="container">
-      <Search />
-      <Picklist />
+      <Search :mainList="catalog" :setFilterGoods="setFilter" />
+      <Picklist :goodList="filterGoodList" />
       <Cart v-show="isVisibleCart" />
     </div>
   </div>
@@ -13,6 +13,9 @@ import Cart from "./Cart";
 import Picklist from "./Picklist";
 import Search from "./Search";
 
+const API_URL =
+  "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses";
+
 export default {
   name: "Content",
   components: {
@@ -20,11 +23,40 @@ export default {
     Picklist,
     Search,
   },
+
+  data: () => ({
+    catalog: [],
+    // filterGoodList: [],
+    filterGoodList: {
+      type: Array,
+      default: () => [],
+    },
+  }),
+
   props: {
     isVisibleCart: {
       typeof: Boolean,
       default: false,
     },
+  },
+
+  methods: {
+    makeGETRequest(url) {
+      fetch(url)
+        .then((data) => data.json())
+        .then((data) => {
+          this.catalog = data;
+          this.filterGoodList = data;
+        });
+    },
+
+    setFilter(value) {
+      this.filterGoodList = value;
+    },
+  },
+
+  mounted() {
+    this.makeGETRequest(`${API_URL}/catalogData.json`);
   },
 };
 </script>
@@ -42,7 +74,6 @@ export default {
   margin-bottom: 5px;
   background: whitesmoke;
 }
-
 .item-pick-list {
   margin: 0 2px 5px;
   flex: auto;
