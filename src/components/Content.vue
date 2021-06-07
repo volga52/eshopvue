@@ -2,8 +2,9 @@
   <div class="content">
     <div class="container">
       <Search :mainList="catalog" :setFilterGoods="setFilter" />
-      <Picklist :goodList="filterGoodList" />
-      <Cart v-show="isVisibleCart" />
+      <Picklist :goodList="filterGoodList" @addToBasket="addToCart" />
+      <!-- <Cart v-show="isVisibleCart" :sGood="goodSelect" /> -->
+      <Cart v-show="isVisibleCart" :sGood="transferGood" />
     </div>
   </div>
 </template>
@@ -26,10 +27,18 @@ export default {
 
   data: () => ({
     catalog: [],
-    // filterGoodList: [],
     filterGoodList: {
-      type: Array,
+      typeof: Array,
       default: () => [],
+    },
+    transferGood: {
+      type: Object,
+      default: () => {},
+    },
+    // listGoodsCart: [],
+    goodSelect: {
+      type: Object,
+      default: () => {},
     },
   }),
 
@@ -52,6 +61,11 @@ export default {
 
     setFilter(value) {
       this.filterGoodList = value;
+    },
+    addToCart(good) {
+      this.goodSelect = good;
+      this.transferGood = this.goodSelect;
+      this.goodSelect = {};
     },
   },
 
