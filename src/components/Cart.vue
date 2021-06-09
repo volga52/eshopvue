@@ -43,6 +43,10 @@ export default {
       typeof: Object,
       default: () => {},
     },
+    API_URL: {
+      typeof: String,
+      default: "",
+    },
   },
 
   computed: {
@@ -50,9 +54,7 @@ export default {
       return this.sGoodsList.length;
     },
     setGoodsList() {
-      console.log("*", this.sGood.id_product);
       if (this.sGood.id_product) {
-        console.log("**", this.sGood);
         this.addToBasket_(this.sGood);
       }
       return this.sGoodsList;
@@ -72,6 +74,16 @@ export default {
         this.sGoodsList.push(good);
       }
     },
+
+    // makeGETRequest(url) {
+    //   return fetch(url).then((data) => data.json());
+    // },
+
+    // getCart() {
+    //   this.makeGETRequest(`${this.API_URL}/cartData`).then((data) => {
+    //     this.sGoodsList = data;
+    //   });
+    // },
   },
 };
 </script>

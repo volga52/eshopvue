@@ -31,7 +31,6 @@ export default {
     sFilter() {
       this.goodsList = this.searchGoods(this.strSearch);
       this.setFilterGoods(this.goodsList);
-      // console.log(this.goodsList);
     },
 
     searchGoods(value) {

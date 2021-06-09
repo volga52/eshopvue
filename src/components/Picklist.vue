@@ -33,12 +33,12 @@ export default {
       default: () => [],
     },
   },
-  data: () => ({
-    cartList: {
-      typeof: Array,
-      default: () => [],
-    },
-  }),
+  // data: () => ({
+  //   cartList: {
+  //     typeof: Array,
+  //     default: () => [],
+  //   },
+  // }),
 };
 </script>
 
