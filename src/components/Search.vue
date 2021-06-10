@@ -1,14 +1,19 @@
 <template>
-  <form action="#" class="search">
-    <input
-      class="search-input"
-      type="search"
-      name="q"
-      placeholder="Поиск"
-      v-model="strSearch"
-    />
-    <button class="search-button" type="button" @click="sFilter">Найти</button>
-  </form>
+  <div class="inform">
+    <form action="#" class="search">
+      <input
+        class="search-input"
+        type="search"
+        name="q"
+        placeholder="Поиск"
+        v-model="strSearch"
+      />
+      <button class="search-button" type="button" @click="sFilter">
+        Найти
+      </button>
+    </form>
+    <p v-show="countPozition">В корзине {{ countPozition }} позиций</p>
+  </div>
 </template>
 
 <script>
@@ -17,6 +22,11 @@ export default {
   data: () => ({
     strSearch: "",
     goodsList: [],
+    countPozition: {
+      // количество позиций в корзине
+      typeof: Number,
+      default: 0,
+    },
   }),
   props: {
     mainList: {
@@ -25,6 +35,10 @@ export default {
     },
     setFilterGoods: {
       type: Function,
+    },
+    cuontGoods: {
+      typeof: Number,
+      default: 0,
     },
   },
   methods: {
@@ -42,6 +56,9 @@ export default {
     strSearch() {
       this.sFilter();
     },
+    cuontGoods() {
+      this.countPozition = this.cuontGoods;
+    },
   },
 };
 </script>
@@ -50,5 +67,9 @@ export default {
 .search-button {
   font-size: 16px;
   margin: 5px;
+}
+.inform {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

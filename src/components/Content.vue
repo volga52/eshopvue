@@ -1,10 +1,18 @@
 <template>
   <div class="content">
     <div class="container">
-      <Search :mainList="catalog" :setFilterGoods="setFilter" />
+      <Search
+        :mainList="catalog"
+        :setFilterGoods="setFilter"
+        :cuontGoods="indicatorGoods"
+      />
       <Picklist :goodList="filterGoodList" @addToBasket="addToCart" />
-      <!-- <Cart v-show="isVisibleCart" :sGood="goodSelect" /> -->
-      <Cart v-show="isVisibleCart" :sGood="goodSelect" :API_URL="urlCart" />
+      <Cart
+        v-show="isVisibleCart"
+        :cartList="cartGoods"
+        @removeGood="removeFromCart"
+        @clearCart="clearCart"
+      />
     </div>
   </div>
 </template>
@@ -33,18 +41,13 @@ export default {
       typeof: Array,
       default: () => [],
     },
-    oldCartGoods: {
+    cartGoods: {
       type: Array,
       default: () => [],
     },
-    // transferGood: {
-    //   type: Object,
-    //   default: () => {},
-    // },
-    // listGoodsCart: [],
-    goodSelect: {
-      type: Object,
-      default: () => {},
+    indicatorGoods: {
+      typeof: Number,
+      default: 0,
     },
   }),
 
@@ -60,6 +63,16 @@ export default {
       return fetch(url).then((data) => data.json());
     },
 
+    makePOSTRequest(url, data) {
+      return fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((data) => data.json());
+    },
+
     getGoods() {
       this.makeGETRequest(`${API_URL}/catalogData`).then((data) => {
         this.catalog = data;
@@ -69,7 +82,8 @@ export default {
 
     getCart() {
       this.makeGETRequest(`${API_URL}/cartData`).then((data) => {
-        this.oldCartGoods = data;
+        this.cartGoods = data;
+        this.indicatorGoods = this.cartGoods.length;
       });
     },
 
@@ -78,24 +92,27 @@ export default {
     },
 
     addToCart(good) {
-      this.goodSelect = good;
+      this.makePOSTRequest(`${API_URL}/addToCart`, good).then(() =>
+        this.getCart()
+      );
+    },
+    removeFromCart(good) {
+      this.makePOSTRequest(`${API_URL}/removeFromCart`, good).then(() =>
+        this.getCart()
+      );
+    },
+    clearCart() {
+      const zero = { clear: "yes" };
+      this.makePOSTRequest(`${API_URL}/removeFromCart`, zero).then(() =>
+        this.getCart()
+      );
     },
   },
 
   mounted() {
     this.getGoods();
     this.getCart();
-    // this.makeGETRequest(`${API_URL}/catalogData`);
   },
-
-  // watch: {
-  //   goodSelect() {
-  //     if (this.goodSelect !== {}) {
-  //       this.addToCart(this.goodSelect);
-  //       this.goodSelect = {};
-  //     }
-  //   },
-  // },
 };
 </script>
 

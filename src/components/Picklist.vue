@@ -11,11 +11,7 @@
         <div>
           <div><b>Наименование</b>: {{ item.product_name }}</div>
           <div><b>Цена за штуку</b>: {{ item.price }}</div>
-          <button
-            class="addToBasket-btn"
-            data-id_product="${item.id_product}"
-            @click="$emit('addToBasket', item)"
-          >
+          <button class="addToBasket-btn" @click="$emit('addToBasket', item)">
             Добавить в корзину
           </button>
         </div>
@@ -33,12 +29,6 @@ export default {
       default: () => [],
     },
   },
-  // data: () => ({
-  //   cartList: {
-  //     typeof: Array,
-  //     default: () => [],
-  //   },
-  // }),
 };
 </script>
 
