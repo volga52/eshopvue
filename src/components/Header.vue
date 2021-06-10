@@ -6,7 +6,7 @@
     <div class="menu-top">
       <a href=""></a>
       <button class="cart-button" type="button" @click="toggleCartStatus">
-        Корзина {{ isVisibleCart }}
+        Корзина
       </button>
 
       <!-- <a href="#"><img src="img/shopping-cart1.png" alt="contacts"></a> -->
